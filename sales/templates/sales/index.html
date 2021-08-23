@@ -1,0 +1,27 @@
+{% extends 'sales/base.html' %}
+
+{% block content %}
+HELLO WORLD
+
+<br>
+<div>
+    <a href="{% url 'create_item' %}" class="btn btn-warning btn-sm">Create Item</a>
+    <a href="{% url 'create' %}" class="btn btn-warning btn-sm">Add Sales</a>
+</div>
+<br>
+<br>
+<div class="panel-default">
+    <h3 class="panel-heading">Items:</h3>
+    {% for item in items %}
+    <h2 class="btn-default btn-lg">{{item}}</h2>
+    <div class='panel'>
+        <a href="{% url 'details' item.id %}" class="btn btn-success btn-sm">Details</a>
+        <div class="pull-right">
+            <a href="{% url 'pdf' item.id %}" class="btn btn-info btn-sm">PDF</a>
+            <a href="{% url 'show_charts' item.id %}" class="btn btn-info btn-sm">View Sale Charts</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

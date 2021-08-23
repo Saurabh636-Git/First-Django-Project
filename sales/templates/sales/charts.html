@@ -1,0 +1,19 @@
+{% extends 'sales/base.html' %}
+
+
+{% block content %}
+<h1>{{item}} Sales Information</h1>
+<br>
+<h2>Line Chart</h2>
+{% if line_chart %}
+  <img src="data:image/png;base64, {{line_chart|safe}}">
+{% endif %}
+<h2>Bar Chart</h2>
+{% if bar_chart %}
+  <img src="data:image/png;base64, {{bar_chart|safe}}">
+{% endif %}
+<h2>Pie Chart</h2>
+{% if pie_chart %}
+  <img src="data:image/png;base64, {{pie_chart|safe}}">
+{% endif %}
+{% endblock content %}

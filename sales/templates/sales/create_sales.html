@@ -1,0 +1,44 @@
+{% extends 'sales/base.html' %}
+
+{% comment %} {% load widget_tweaks %} {% endcomment %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Sales</h3>
+            </div>
+                
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                {{forms}}
+                <button type="submit" class="btn btn-primary my-1">Add</button>
+                {% comment %} <div>
+                    <div class="form-group mr-md-3">
+                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Items:</label>
+                    {{forms.items}}
+                    <br>
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Quantity:</label>
+                    {{forms.quantity}}
+                    <br>
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Total:</label>
+                    {{forms.total}}
+                    <br>
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Date:</label>
+                    {{forms.date}}
+                    <br>
+                    <button type="submit" class="btn btn-primary my-1">Add</button>
+                </div>
+                </div> {% endcomment %}
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+{% csrf_token %}
+        {{forms}}
+        <button type="submit">Create</button>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      
+    </style>
+  </head>
+  <body>
+    <h1>{{obj.item}} Sales Information</h1>
+    <hr>
+    <h2>Line Chart</h2>
+    <img src="data:image/png;base64, {{line_chart|safe}}">
+    <hr>
+    <h2>Bar Chart</h2>
+    <img src="data:image/png;base64, {{bar_chart|safe}}">
+    <hr>
+    <h2>Pie Chart</h2>
+    <img src="data:image/png;base64, {{pie_chart|safe}}">
+    <hr>
+  </body>
+</html>

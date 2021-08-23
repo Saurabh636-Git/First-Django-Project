@@ -1,0 +1,43 @@
+{% extends 'sales/base.html' %}
+{% load static %}
+
+{% comment %} {% block scripts %}
+  <script src="{% static 'details.js' %}" defer></script>
+{% endblock scripts %} {% endcomment %}
+
+{% block content %}
+
+<table id="t01">
+  <tr>
+    <th>Total Amount</th>
+    <th>Quantity</th>
+    <th>Date</th>
+  </tr>
+{% for item in list %}
+    <tr>
+        <td>{{item.total}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.date}}</td>
+    </tr>
+
+{% endfor %}
+</table>
+<br>
+{% comment %} <button onclick="see_charts()">See Charts</button>
+<div id="s">
+  <h1>{{item}} Sales Information</h1>
+  <br>
+  <h2>Line Chart</h2>
+  {% if line_chart %}
+    <img src="data:image/png;base64, {{line_chart|safe}}">
+  {% endif %}
+  <h2>Bar Chart</h2>
+  {% if bar_chart %}
+    <img src="data:image/png;base64, {{bar_chart|safe}}">
+  {% endif %}
+  <h2>Pie Chart</h2>
+  {% if pie_chart %}
+    <img src="data:image/png;base64, {{pie_chart|safe}}">
+  {% endif %}
+</div> {% endcomment %}
+{% endblock content %}
