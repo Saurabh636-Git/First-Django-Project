@@ -6,10 +6,23 @@ from .models import *
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from xhtml2pdf import pisa
 
 # Create your views here.
 
+class UserLogin(LoginView):
+    template_name = 'sales/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+
+@login_required(login_url='login')
 def index(request):
     items = Item.objects.all()
     
@@ -19,7 +32,7 @@ def index(request):
     }
     return render(request, 'sales/index.html', context)
 
-
+@login_required(login_url='login')
 def create_sales(request):
     
     if request.method == 'POST':
@@ -38,6 +51,7 @@ def create_sales(request):
 
     return render(request, 'sales/create_sales.html', context)
 
+@login_required(login_url='login')
 def create_item(request):
     
     if request.method == 'POST':
@@ -54,6 +68,7 @@ def create_item(request):
 
     return render(request, 'sales/create_item.html', context)
 
+@login_required(login_url='login')
 def details(request, item_id):
     item = Item.objects.get(pk=item_id)
     list = Sale.objects.filter(items=item)
@@ -64,6 +79,7 @@ def details(request, item_id):
 
     return render(request, 'sales/details.html', context)
 
+@login_required(login_url='login')
 def show_charts(request, item_id):
     item = Item.objects.get(pk=item_id)
     list = Sale.objects.filter(items=item)
@@ -86,6 +102,7 @@ def show_charts(request, item_id):
 
     return render(request, 'sales/charts.html', context)
 
+@login_required(login_url='login')
 def render_pdf_view(request, item_id):
     template_path = 'sales/pdf.html'
     obj = get_object_or_404(Item, pk=item_id)

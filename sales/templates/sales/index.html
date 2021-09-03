@@ -1,9 +1,15 @@
 {% extends 'sales/base.html' %}
 
 {% block content %}
-HELLO WORLD
 
 <br>
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Log Out</a>
+{% else %}
+    <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+
 <div>
     <a href="{% url 'create_item' %}" class="btn btn-warning btn-sm">Create Item</a>
     <a href="{% url 'create' %}" class="btn btn-warning btn-sm">Add Sales</a>

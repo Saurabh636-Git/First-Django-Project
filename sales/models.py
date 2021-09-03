@@ -3,6 +3,7 @@ from django.forms.utils import to_current_timezone
 from django.db import models
 import datetime
 from .utils import gen_id
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -15,6 +16,7 @@ class Item(models.Model):
 
 
 class Sale(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
     tr_id = models.CharField(max_length=12, blank=True)
     items = models.ForeignKey(Item, null=True, on_delete=CASCADE)
     quantity = models.PositiveIntegerField(blank=True, null=True)
