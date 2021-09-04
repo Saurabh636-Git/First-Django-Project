@@ -9,6 +9,7 @@ from django.template.loader import get_template
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from xhtml2pdf import pisa
 
 # Create your views here.
@@ -21,6 +22,20 @@ class UserLogin(LoginView):
     def get_success_url(self):
         return reverse_lazy('index')
 
+def register_user(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        print('got it here')
+        if form.is_valid():
+            form.save()
+            print('saved')
+    context = {
+        'form': form
+    }
+
+    return render(request, 'sales/register.html', context)
 
 @login_required(login_url='login')
 def index(request):
